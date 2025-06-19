@@ -4,6 +4,7 @@ import { Cards } from "./components/Cards.jsx";
 import "./App.css";
 
 function App() {
+  const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const { pokemons, loading, error } = usePokemonData();
@@ -17,14 +18,21 @@ function App() {
         </div>
         <Scoreboard score={score} bestScore={bestScore} />
       </header>
-      <Cards
-        setScore={setScore}
-        bestScore={bestScore}
-        setBestScore={setBestScore}
-        pokemons={pokemons}
-        loading={loading}
-        error={error}
-      />
+      {!gameOver && (
+        <Cards
+          setScore={setScore}
+          bestScore={bestScore}
+          setBestScore={setBestScore}
+          pokemons={pokemons}
+          loading={loading}
+          error={error}
+          setGameOver={setGameOver}
+        />
+      )}
+      {gameOver && (
+        // Add game over mechanics later!
+        <p>Game Over!</p>
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Card({
   name,
@@ -8,6 +8,7 @@ function Card({
   setBestScore,
   clickedCardNames,
   setClickedCardNames,
+  setGameOver,
 }) {
   function cardClicked(name) {
     if (clickedCardNames.has(name)) {
@@ -17,6 +18,9 @@ function Card({
       const newClickedCardNames = new Set(clickedCardNames);
       newClickedCardNames.add(name);
       setClickedCardNames(newClickedCardNames);
+
+      // check if game over
+      if (newClickedCardNames.size === 12) setGameOver(true);
 
       setScore((s) => {
         const newScore = (s += 1);
@@ -41,8 +45,27 @@ function Cards({
   pokemons,
   loading,
   error,
+  setGameOver,
 }) {
   const [clickedCardNames, setClickedCardNames] = useState(new Set());
+  const [shuffledPokemons, setShuffledPokemons] = useState([]);
+
+  useEffect(() => {
+    if (!pokemons) return;
+
+    function shufflePokemons(array) {
+      const newArray = [...array];
+
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+
+      return newArray;
+    }
+
+    setShuffledPokemons(shufflePokemons(pokemons));
+  }, [pokemons, clickedCardNames]);
 
   return (
     <section className="cards-section">
@@ -50,7 +73,7 @@ function Cards({
       {error && <p className="error">{error}</p>}
       {!loading && pokemons && (
         <div className="cards">
-          {pokemons.map((pokemon) => (
+          {shuffledPokemons.map((pokemon) => (
             <Card
               name={pokemon.name}
               spriteUrl={
@@ -61,6 +84,7 @@ function Cards({
               setBestScore={setBestScore}
               clickedCardNames={clickedCardNames}
               setClickedCardNames={setClickedCardNames}
+              setGameOver={setGameOver}
               key={pokemon.name}
             />
           ))}
