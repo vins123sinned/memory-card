@@ -19,6 +19,7 @@ function App() {
       </header>
       <Cards
         setScore={setScore}
+        bestScore={bestScore}
         setBestScore={setBestScore}
         pokemons={pokemons}
         loading={loading}
