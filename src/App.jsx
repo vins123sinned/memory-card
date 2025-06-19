@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Scoreboard } from "./components/Scoreboard.jsx";
 import { Cards } from "./components/Cards.jsx";
+import { GameOver } from "./components/GameOver.jsx";
 import "./App.css";
 
 function App() {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const { pokemons, loading, error } = usePokemonData();
+  const { pokemons, loading, error, refresh } = usePokemonData();
 
   return (
     <>
@@ -31,7 +32,12 @@ function App() {
       )}
       {gameOver && (
         // Add game over mechanics later!
-        <p>Game Over!</p>
+        <GameOver
+          setGameOver={setGameOver}
+          setScore={setScore}
+          setBestScore={setBestScore}
+          refresh={refresh}
+        />
       )}
     </>
   );
@@ -53,6 +59,11 @@ function usePokemonData() {
   const [pokemons, setPokemons] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [refreshIndex, setRefreshIndex] = useState(0);
+
+  const refresh = useCallback(() => {
+    setRefreshIndex((r) => r + 1);
+  }, []);
 
   useEffect(() => {
     const ids = getRandomIds(12, 1025);
@@ -84,9 +95,9 @@ function usePokemonData() {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [refreshIndex]);
 
-  return { pokemons, loading, error };
+  return { pokemons, loading, error, refresh };
 }
 
 export default App;
