@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <header>
-        <div className="header-text">
+        <div>
           <h1>Pokémon Memory Game</h1>
           <p>Try to click every card only ONCE to win the game!</p>
         </div>

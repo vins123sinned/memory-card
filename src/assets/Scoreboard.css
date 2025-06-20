@@ -1,0 +1,9 @@
+.scoreboard {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+}
+
+.scoreboard p {
+  margin: 0;
+}
