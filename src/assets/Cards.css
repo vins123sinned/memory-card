@@ -4,8 +4,8 @@
 
 .cards {
   display: grid;
-  gap: 2rem 3rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .card {
@@ -39,4 +39,19 @@
 
 .card p {
   padding: 1rem;
+}
+
+@media (min-width: 650px) {
+  .cards {
+    gap: 2rem 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (min-width: 1500px) and (max-width: 1810px) {
+  /* Fixes uneven 5 cards column */
+  .cards {
+    gap: 1.5rem 3rem;
+    grid-template-columns: repeat(6, 1fr);
+  }
 }

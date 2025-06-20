@@ -1,9 +1,18 @@
 .scoreboard {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.75rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem 0.75rem;
 }
 
 .scoreboard p {
   margin: 0;
 }
+
+@media (min-width: 800px) {
+  .scoreboard {
+  }
+}
+
+/* make it position sticky too! */

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "../assets/Cards.css";
 
 function Card({
@@ -50,6 +50,11 @@ function Cards({
 }) {
   const [clickedCardNames, setClickedCardNames] = useState(new Set());
   const [shuffledPokemons, setShuffledPokemons] = useState([]);
+  const scrollYRef = useRef(0);
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, scrollYRef.current);
+  }, [shuffledPokemons]);
 
   useEffect(() => {
     if (!pokemons) return;
@@ -61,6 +66,8 @@ function Cards({
         const j = Math.floor(Math.random() * (i + 1));
         [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
       }
+
+      scrollYRef.current = window.scrollY;
 
       return newArray;
     }
