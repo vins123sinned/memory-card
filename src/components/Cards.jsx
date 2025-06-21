@@ -77,7 +77,7 @@ function Cards({
 
   return (
     <section className="cards-section">
-      {loading && <p className="loading-para">Loading...</p>}
+      {loading && <p className="loading">Loading...</p>}
       {error && <p className="error">{error}</p>}
       {!loading && pokemons && (
         <div className="cards">
