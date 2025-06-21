@@ -19,17 +19,15 @@ function App() {
         </div>
         <Scoreboard score={score} bestScore={bestScore} />
       </header>
-      {!gameOver && (
-        <Cards
-          setScore={setScore}
-          bestScore={bestScore}
-          setBestScore={setBestScore}
-          pokemons={pokemons}
-          loading={loading}
-          error={error}
-          setGameOver={setGameOver}
-        />
-      )}
+      <Cards
+        setScore={setScore}
+        bestScore={bestScore}
+        setBestScore={setBestScore}
+        pokemons={pokemons}
+        loading={loading}
+        error={error}
+        setGameOver={setGameOver}
+      />
       {gameOver && (
         // Add game over mechanics later!
         <GameOver
@@ -48,7 +46,8 @@ function getRandomIds(amount, limit) {
 
   // Set will prevent duplicate ids on the off chance it happens
   while (ids.size < amount) {
-    const id = Math.floor(Math.random() * limit);
+    // Gets a id from 1-1025
+    const id = Math.floor(Math.random() * (limit - 1)) + 1;
     ids.add(id);
   }
 
@@ -66,7 +65,7 @@ function usePokemonData() {
   }, []);
 
   useEffect(() => {
-    const ids = getRandomIds(12, 1025);
+    const ids = getRandomIds(12, 1026);
     if (!ids) return;
 
     let ignore = false;

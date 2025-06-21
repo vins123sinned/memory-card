@@ -1,3 +1,5 @@
+import "../assets/GameOver.css";
+
 function GameOver({ setGameOver, setScore, setBestScore, refresh }) {
   function startNewGame() {
     setGameOver(false);
@@ -7,11 +9,13 @@ function GameOver({ setGameOver, setScore, setBestScore, refresh }) {
   }
 
   return (
-    <div className="game-over">
-      <h2>Congratulations! You won!</h2>
-      <button type="button" onClick={startNewGame}>
-        New Game
-      </button>
+    <div className="overlay">
+      <div className="game-over">
+        <h2>Congratulations! You won!</h2>
+        <button type="button" onClick={startNewGame}>
+          New Game
+        </button>
+      </div>
     </div>
   );
 }
