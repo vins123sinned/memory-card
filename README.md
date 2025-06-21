@@ -19,7 +19,7 @@ git clone git@github.com:your-username/memory-card.git
 - Navigate into the directory
 
 ```bash
-cd cv-application
+cd memory-card
 ```
 
 - Install all dependencies
