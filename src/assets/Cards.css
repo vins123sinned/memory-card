@@ -41,6 +41,20 @@
   padding: 1rem;
 }
 
+.loading,
+.error {
+  text-align: center;
+}
+
+.loading {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.error {
+  color: #f11d12;
+}
+
 @media (min-width: 650px) {
   .cards {
     gap: 2rem 3rem;

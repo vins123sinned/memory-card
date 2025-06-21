@@ -9,10 +9,3 @@
 .scoreboard p {
   margin: 0;
 }
-
-@media (min-width: 800px) {
-  .scoreboard {
-  }
-}
-
-/* make it position sticky too! */
