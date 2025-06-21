@@ -18,6 +18,24 @@ function App() {
           <p>Try to click every card only ONCE to win the game!</p>
         </div>
         <Scoreboard score={score} bestScore={bestScore} />
+        <p className="attribution">
+          Background Image by 温負 on{" "}
+          <a
+            href="https://wall.alphacoders.com/big.php?i=1243956"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Alpha Coders
+          </a>
+          . Pokemon data from{" "}
+          <a
+            href="https://pokeapi.co/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            PokéAPI
+          </a>
+        </p>
       </header>
       <Cards
         setScore={setScore}

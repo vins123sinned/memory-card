@@ -28,3 +28,15 @@ header h1 {
   max-width: 70vw;
   margin: 0 0 1rem 0;
 }
+
+.attribution {
+  position: absolute;
+  right: 1rem;
+  bottom: 0rem;
+  font-size: 0.75rem;
+  color: #969393;
+}
+
+.attribution a {
+  color: #969393;
+}
